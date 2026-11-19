@@ -1,0 +1,8 @@
+export const CHEATSHEETS = [
+    { cat: 'Big-O', title: 'List & Dict Big-O', tone: 'mint', snippet: 's = set(items)\nif x in s: ...  # O(1)', items: ['list[i]: O(1)', 'list.append(): O(1) amortized', 'list.insert(0, x): O(n)', 'x in list: O(n)', 'dict[k] / k in set: O(1) avg'] },
+    { cat: 'Dunders', title: 'Core Dunder Protocols', tone: 'lavender', snippet: 'def __repr__(self): return f"User({self.id!r})"', items: ['__repr__ / __str__: formatting', '__eq__ / __hash__: dict & set keys', '__len__ / __getitem__: sequences', '__iter__ / __next__: iteration', '__enter__ / __exit__: with blocks'] },
+    { cat: 'Concurrency', title: 'Concurrency Decision Guide', tone: 'sky', snippet: 'await asyncio.gather(t1(), t2())', items: ['Many network calls: asyncio', 'Blocking I/O libs: ThreadPoolExecutor', 'Heavy CPU math: ProcessPoolExecutor', 'Matrix math: NumPy (releases GIL)'] },
+    { cat: 'Big-O', title: 'Collections Cheat', tone: 'yellow', snippet: 'from collections import deque, Counter', items: ['deque: O(1) append/popleft', 'Counter: fast frequency tally', 'defaultdict: auto-init missing keys', 'heapq: O(log n) priority queue'] },
+    { cat: 'Memory', title: 'Memory & __slots__', tone: 'coral', snippet: 'class Point:\n    __slots__ = ("x", "y")', items: ['__slots__ removes per-instance __dict__', 'Generators use O(1) RAM vs lists', 'del drops reference, not memory directly', 'gc.collect() sweeps reference cycles'] },
+    { cat: 'Concurrency', title: 'Asyncio Primitives', tone: 'mint', snippet: 'async with asyncio.Semaphore(10): ...', items: ['asyncio.gather(*coros): concurrent run', 'asyncio.create_task(): background task', 'asyncio.Semaphore(n): rate limit', 'asyncio.to_thread(fn): offload blocking I/O'] }
+];

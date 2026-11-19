@@ -1,0 +1,86 @@
+:root {
+    --bg: #FAF8F3;
+    --surface: #FFFFFF;
+    --surface-alt: #F3EFE6;
+    --border: #18181B;
+    --text: #18181B;
+    --text-muted: #52525B;
+    --mint: #A7F3D0;
+    --mint-strong: #6EE7B7;
+    --yellow: #FDE68A;
+    --lavender: #DDD6FE;
+    --coral: #FECDD3;
+    --sky: #BAE6FD;
+    --grid-dot: #D6D1C4;
+}
+
+html.dark {
+    --bg: #181715;
+    --surface: #22211E;
+    --surface-alt: #2B2A26;
+    --border: #E4E2DD;
+    --text: #F4F2ED;
+    --text-muted: #A1A1AA;
+    --mint: #1E4D3B;
+    --mint-strong: #27674F;
+    --yellow: #4A3B16;
+    --lavender: #3B3054;
+    --coral: #54262E;
+    --sky: #1E3D54;
+    --grid-dot: #383630;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.font-mono-ui {
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.neo-card {
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    box-shadow: 3px 3px 0px var(--border);
+    border-radius: 10px;
+}
+
+.neo-card-sm {
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    box-shadow: 2px 2px 0px var(--border);
+    border-radius: 8px;
+}
+
+.neo-btn {
+    border: 1.5px solid var(--border);
+    box-shadow: 2px 2px 0px var(--border);
+    border-radius: 8px;
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+    cursor: pointer;
+}
+
+.neo-btn:hover:not(:disabled) {
+    transform: translate(-1px, -1px);
+    box-shadow: 3px 3px 0px var(--border);
+}
+
+.neo-btn:active:not(:disabled) {
+    transform: translate(1px, 1px);
+    box-shadow: 1px 1px 0px var(--border);
+}
+
+.neo-btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.iso-grid {
+    background-color: var(--surface);
+    background-image: radial-gradient(var(--grid-dot) 1.2px, transparent 1.2px);
+    background-size: 18px 18px;
+}
