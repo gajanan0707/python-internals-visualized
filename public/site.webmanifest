@@ -1,0 +1,16 @@
+{
+  "name": "Python Internals Visualized",
+  "short_name": "PythonInternals",
+  "description": "Interactive visual guide and simulator for Python & CPython 3.12 internals, memory, GIL, and async.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FAF8F3",
+  "theme_color": "#18181B",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
