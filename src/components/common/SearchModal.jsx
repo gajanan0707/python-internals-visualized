@@ -1,17 +1,19 @@
 import React from 'react';
 import { Search } from 'lucide-react';
+import { useAppContext } from '../../context/AppContext.jsx';
 
-export function SearchModal({
-    isOpen,
-    onClose,
-    searchQuery,
-    setSearchQuery,
-    searchCursor,
-    setSearchCursor,
-    searchResults,
-    onSelectResult,
-    searchInputRef
-}) {
+export function SearchModal(props) {
+    const context = useAppContext();
+    const isOpen = props.isOpen ?? context.searchOpen;
+    const onClose = props.onClose ?? (() => context.setSearchOpen(false));
+    const searchQuery = props.searchQuery ?? context.searchQuery;
+    const setSearchQuery = props.setSearchQuery ?? context.setSearchQuery;
+    const searchCursor = props.searchCursor ?? context.searchCursor;
+    const setSearchCursor = props.setSearchCursor ?? context.setSearchCursor;
+    const searchResults = props.searchResults ?? context.searchResults;
+    const onSelectResult = props.onSelectResult ?? context.handleSelectSearchResult;
+    const searchInputRef = props.searchInputRef ?? context.searchInputRef;
+
     if (!isOpen) return null;
 
     return (

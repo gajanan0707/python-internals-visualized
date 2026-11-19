@@ -1,17 +1,19 @@
 import React from 'react';
 import { X } from 'lucide-react';
 import CurriculumTree from './CurriculumTree.jsx';
+import { useAppContext } from '../../context/AppContext.jsx';
 
-export function MobileDrawer({
-    isOpen,
-    onClose,
-    modules,
-    currentLessonId,
-    completedLessons,
-    collapsedMods,
-    onToggleCollapse,
-    onSelectLesson
-}) {
+export function MobileDrawer(props) {
+    const context = useAppContext();
+    const isOpen = props.isOpen ?? context.mobileMenuOpen;
+    const onClose = props.onClose ?? (() => context.setMobileMenuOpen(false));
+    const modules = props.modules ?? context.modules;
+    const currentLessonId = props.currentLessonId ?? context.currentLesson.id;
+    const completedLessons = props.completedLessons ?? context.completedLessons;
+    const collapsedMods = props.collapsedMods ?? context.collapsedMods;
+    const onToggleCollapse = props.onToggleCollapse ?? context.toggleCollapsedMod;
+    const onSelectLesson = props.onSelectLesson ?? context.selectLesson;
+
     if (!isOpen) return null;
 
     return (

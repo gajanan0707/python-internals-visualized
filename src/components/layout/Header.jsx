@@ -2,6 +2,7 @@ import React from 'react';
 import {
     Menu, Layers, BookOpen, Award, FlaskConical, FileCode2, Search, Sun, Moon
 } from 'lucide-react';
+import { useAppContext } from '../../context/AppContext.jsx';
 
 const NAV_TABS = [
     { id: 'learn', label: 'Learn', Icon: BookOpen },
@@ -10,14 +11,15 @@ const NAV_TABS = [
     { id: 'cheatsheets', label: 'Cheatsheets', Icon: FileCode2 }
 ];
 
-export function Header({
-    activeTab,
-    setActiveTab,
-    dark,
-    toggleDark,
-    onOpenSearch,
-    onOpenMobileMenu
-}) {
+export function Header(props) {
+    const context = useAppContext();
+    const activeTab = props.activeTab ?? context.activeTab;
+    const setActiveTab = props.setActiveTab ?? context.setActiveTab;
+    const dark = props.dark ?? context.dark;
+    const toggleDark = props.toggleDark ?? context.toggleDark;
+    const onOpenSearch = props.onOpenSearch ?? context.openSearch;
+    const onOpenMobileMenu = props.onOpenMobileMenu ?? (() => context.setMobileMenuOpen(true));
+
     return (
         <header className="sticky top-0 z-30 border-b-[1.5px] border-[var(--border)] bg-[var(--surface)] px-3 sm:px-5 py-2.5">
             <div className="max-w-[1600px] mx-auto flex flex-wrap items-center justify-between gap-2.5">

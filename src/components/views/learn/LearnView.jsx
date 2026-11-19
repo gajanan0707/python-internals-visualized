@@ -7,33 +7,37 @@ import StepTimeline from './StepTimeline.jsx';
 import ConceptGuide from './ConceptGuide.jsx';
 import StepInspector from './StepInspector.jsx';
 import { TONE_MAP } from '../../../constants/theme.js';
+import { useAppContext } from '../../../context/AppContext.jsx';
 
-export function LearnView({
-    modules,
-    allLessons,
-    currentLesson,
-    stepIndex,
-    setStepIndex,
-    explainMode,
-    setExplainMode,
-    completedLessons,
-    isStepVisited,
-    collapsedMods,
-    setCollapsedMods,
-    selectedNodeId,
-    setSelectedNodeId,
-    activeNodeObj,
-    nodeMap,
-    speed,
-    setSpeed,
-    paused,
-    setPaused,
-    onReplay,
-    onSelectLesson,
-    onNextStep,
-    onPrevStep,
-    topicGuide
-}) {
+export function LearnView(props) {
+    const context = useAppContext();
+    const modules = props.modules ?? context.modules;
+    const allLessons = props.allLessons ?? context.allLessons;
+    const currentLesson = props.currentLesson ?? context.currentLesson;
+    const stepIndex = props.stepIndex ?? context.stepIndex;
+    const setStepIndex = props.setStepIndex ?? context.setStepIndex;
+    const explainMode = props.explainMode ?? context.explainMode;
+    const setExplainMode = props.setExplainMode ?? context.setExplainMode;
+    const completedLessons = props.completedLessons ?? context.completedLessons;
+    const isStepVisited = props.isStepVisited ?? context.isStepVisited;
+    const collapsedMods = props.collapsedMods ?? context.collapsedMods;
+    const onToggleCollapse = props.setCollapsedMods
+        ? ((id) => props.setCollapsedMods((prev) => ({ ...prev, [id]: !prev[id] })))
+        : context.toggleCollapsedMod;
+    const selectedNodeId = props.selectedNodeId ?? context.selectedNodeId;
+    const setSelectedNodeId = props.setSelectedNodeId ?? context.setSelectedNodeId;
+    const activeNodeObj = props.activeNodeObj ?? context.activeNodeObj;
+    const nodeMap = props.nodeMap ?? context.nodeMap;
+    const speed = props.speed ?? context.speed;
+    const setSpeed = props.setSpeed ?? context.setSpeed;
+    const paused = props.paused ?? context.paused;
+    const setPaused = props.setPaused ?? context.setPaused;
+    const onReplay = props.onReplay ?? context.triggerReplay;
+    const onSelectLesson = props.onSelectLesson ?? context.selectLesson;
+    const onNextStep = props.onNextStep ?? context.handleNextStep;
+    const onPrevStep = props.onPrevStep ?? context.handlePrevStep;
+    const topicGuide = props.topicGuide ?? context.topicGuide;
+
     const currentStep = currentLesson.steps[stepIndex] || currentLesson.steps[0];
     const totalSteps = currentLesson.steps.length;
 
@@ -53,9 +57,7 @@ export function LearnView({
                 currentLessonId={currentLesson.id}
                 completedLessons={completedLessons}
                 collapsedMods={collapsedMods}
-                onToggleCollapse={(modId) =>
-                    setCollapsedMods((prev) => ({ ...prev, [modId]: !prev[modId] }))
-                }
+                onToggleCollapse={onToggleCollapse}
                 onSelectLesson={onSelectLesson}
             />
 
