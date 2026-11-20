@@ -1,21 +1,14 @@
-import { executionModule } from './modules/01_execution.js';
-import { dataStructuresModule } from './modules/02_data_structures.js';
-import { functionsModule } from './modules/03_functions.js';
-import { oopModule } from './modules/04_oop.js';
-import { iterationModule } from './modules/05_iteration.js';
-import { concurrencyModule } from './modules/06_concurrency.js';
-import { typingModule } from './modules/07_typing.js';
-import { performanceModule } from './modules/08_performance.js';
+import { fundamentalsModule } from './modules/00_fundamentals.js';
+import { coreProgrammingModule } from './modules/01_core_programming.js';
+import { intermediatePythonModule } from './modules/02_intermediate_python.js';
+import { advancedPythonModule } from './modules/03_advanced_python.js';
 
+// The 4 exhaustive, structured phases covering 100% of Python from fundamentals to advanced CPython internals
 export const MODULES = [
-    executionModule,
-    dataStructuresModule,
-    functionsModule,
-    oopModule,
-    iterationModule,
-    concurrencyModule,
-    typingModule,
-    performanceModule
+    fundamentalsModule,
+    coreProgrammingModule,
+    intermediatePythonModule,
+    advancedPythonModule
 ];
 
 export const ALL_LESSONS = MODULES.flatMap((m) =>
