@@ -1,33 +1,99 @@
+/* ==========================================================================
+   NEO-BRUTALIST DESIGN SYSTEM & 3-COLUMN DESKTOP GRID
+   Inspired by designed-to-scale.vercel.app with high-fidelity 2.5D aesthetics.
+   ========================================================================== */
+
 :root {
-    --bg: #FAF8F3;
+    /* Light Mode: Warm Paper Base */
+    --bg: #FAF9F5;
     --surface: #FFFFFF;
     --surface-alt: #F3EFE6;
-    --border: #18181B;
-    --text: #18181B;
+    --surface-card: #FFFFFF;
+    --border: #1A1A1A;
+    --text: #1A1A1A;
     --text-muted: #52525B;
-    --mint: #A7F3D0;
-    --mint-strong: #6EE7B7;
-    --yellow: #FDE68A;
+    --text-inverse: #FFFFFF;
+    
+    /* Neo-Brutalist Pastels */
+    --mint: #B8F2D0;
+    --mint-strong: #10B981;
+    --mint-text: #065F46;
     --lavender: #DDD6FE;
+    --lavender-strong: #8B5CF6;
+    --lavender-text: #5B21B6;
+    --yellow: #FDE68A;
+    --yellow-strong: #F59E0B;
+    --yellow-text: #92400E;
     --coral: #FECDD3;
+    --coral-strong: #F43F5E;
+    --coral-text: #9F1239;
     --sky: #BAE6FD;
+    --sky-strong: #0284C7;
+    --sky-text: #075985;
+    --cyan: #BAE6FD;
+    --cyan-strong: #06B6D4;
+    --amber: #FDE68A;
+
+    /* Grid & Accents */
     --grid-dot: #D6D1C4;
+    --packet-read: #06B6D4;
+    --packet-write: #F97316;
+    --packet-return: #10B981;
+
+    /* Neo-Brutalist Shadows */
+    --shadow-hard: 4px 4px 0px var(--border);
+    --shadow-hard-sm: 2px 2px 0px var(--border);
+    --shadow-hard-lg: 6px 6px 0px var(--border);
+    --shadow-hard-press: 1px 1px 0px var(--border);
 }
 
 html.dark {
-    --bg: #181715;
-    --surface: #22211E;
-    --surface-alt: #2B2A26;
-    --border: #E4E2DD;
+    /* Dark Mode: Deep Charcoal & Slate Surfaces */
+    --bg: #121214;
+    --surface: #16161A;
+    --surface-alt: #222228;
+    --surface-card: #242429;
+    --border: #E4E4E7;
     --text: #F4F2ED;
     --text-muted: #A1A1AA;
-    --mint: #1E4D3B;
-    --mint-strong: #27674F;
-    --yellow: #4A3B16;
-    --lavender: #3B3054;
-    --coral: #54262E;
-    --sky: #1E3D54;
-    --grid-dot: #383630;
+    --text-inverse: #18181C;
+
+    /* Dark Mode Saturated Accents */
+    --mint: #134E35;
+    --mint-strong: #34D399;
+    --mint-text: #A7F3D0;
+    --lavender: #3B2E58;
+    --lavender-strong: #A78BFA;
+    --lavender-text: #E9D5FF;
+    --yellow: #4D3810;
+    --yellow-strong: #FBBF24;
+    --yellow-text: #FDE68A;
+    --coral: #541F28;
+    --coral-strong: #FB7185;
+    --coral-text: #FECDD3;
+    --sky: #133954;
+    --sky-strong: #38BDF8;
+    --sky-text: #BAE6FD;
+    --cyan: #133954;
+    --cyan-strong: #22D3EE;
+    --amber: #4D3810;
+
+    --grid-dot: #323238;
+    --packet-read: #38BDF8;
+    --packet-write: #FB923C;
+    --packet-return: #34D399;
+
+    --shadow-hard: 4px 4px 0px var(--border);
+    --shadow-hard-sm: 2px 2px 0px var(--border);
+    --shadow-hard-lg: 6px 6px 0px var(--border);
+    --shadow-hard-press: 1px 1px 0px var(--border);
+}
+
+/* ==========================================================================
+   GLOBAL RESET & TYPOGRAPHY
+   ========================================================================== */
+*, *::before, *::after {
+    box-sizing: border-box;
 }
 
 body {
@@ -36,32 +102,58 @@ body {
     font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
+    min-height: 100vh;
 }
 
 .font-mono-ui {
     font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: var(--surface-alt);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 4px;
+}
+
+/* ==========================================================================
+   NEO-BRUTALIST CARDS, BUTTONS & CALLOUTS
+   ========================================================================== */
 .neo-card {
     background: var(--surface);
-    border: 1.5px solid var(--border);
-    box-shadow: 3px 3px 0px var(--border);
-    border-radius: 10px;
+    border: 2px solid var(--border);
+    box-shadow: var(--shadow-hard);
+    border-radius: 12px;
 }
 
 .neo-card-sm {
     background: var(--surface);
-    border: 1.5px solid var(--border);
-    box-shadow: 2px 2px 0px var(--border);
+    border: 2px solid var(--border);
+    box-shadow: var(--shadow-hard-sm);
+    border-radius: 8px;
+}
+
+.neo-card-flat {
+    background: var(--surface);
+    border: 2px solid var(--border);
     border-radius: 8px;
 }
 
 .neo-btn {
-    border: 1.5px solid var(--border);
-    box-shadow: 2px 2px 0px var(--border);
+    border: 2px solid var(--border);
+    box-shadow: var(--shadow-hard-sm);
     border-radius: 8px;
-    transition: transform 0.1s ease, box-shadow 0.1s ease;
+    font-weight: 700;
+    transition: transform 0.08s ease, box-shadow 0.08s ease;
     cursor: pointer;
+    user-select: none;
 }
 
 .neo-btn:hover:not(:disabled) {
@@ -70,17 +162,95 @@ body {
 }
 
 .neo-btn:active:not(:disabled) {
-    transform: translate(1px, 1px);
-    box-shadow: 1px 1px 0px var(--border);
+    transform: translate(2px, 2px);
+    box-shadow: 0px 0px 0px var(--border);
 }
 
 .neo-btn:disabled {
     opacity: 0.45;
     cursor: not-allowed;
+    transform: none !important;
+    box-shadow: var(--shadow-hard-sm) !important;
 }
 
+/* Callouts */
+.neo-callout-idea {
+    background: var(--lavender);
+    border: 2px solid var(--border);
+    box-shadow: var(--shadow-hard-sm);
+    border-radius: 8px;
+    padding: 10px 12px;
+}
+
+.neo-callout-changes {
+    background: var(--surface-alt);
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+}
+
+/* 2.5D Isometric Grid Background */
 .iso-grid {
     background-color: var(--surface);
-    background-image: radial-gradient(var(--grid-dot) 1.2px, transparent 1.2px);
-    background-size: 18px 18px;
+    background-image: radial-gradient(var(--grid-dot) 1.5px, transparent 1.5px);
+    background-size: 20px 20px;
+}
+
+/* ==========================================================================
+   3-COLUMN DESKTOP GRID LAYOUT
+   Left: 270px (Collapsible Sidebar)
+   Center: minmax(0, 1fr) (Visualizer & Flow Canvas)
+   Right: 340px (Step Inspector)
+   ========================================================================== */
+.layout-3col {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    width: 100%;
+    max-width: 1640px;
+    margin: 0 auto;
+    padding: 16px;
+    min-height: calc(100vh - 72px);
+}
+
+@media (min-width: 1024px) {
+    .layout-3col {
+        grid-template-columns: 270px minmax(0, 1fr) 340px;
+        align-items: start;
+    }
+}
+
+/* ==========================================================================
+   2.5D ISOMETRIC NODE & PACKET ANIMATION STYLES
+   ========================================================================== */
+.iso-node-group {
+    transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+    cursor: pointer;
+}
+
+.iso-node-group:hover {
+    transform: translateY(-2px);
+}
+
+.iso-node-glow {
+    filter: drop-shadow(0 0 8px var(--sky-strong));
+}
+
+@keyframes pulseGlowRing {
+    0% {
+        stroke-opacity: 0.9;
+        stroke-width: 2px;
+    }
+    50% {
+        stroke-opacity: 0.3;
+        stroke-width: 4px;
+    }
+    100% {
+        stroke-opacity: 0.9;
+        stroke-width: 2px;
+    }
+}
+
+.pulse-target-ring {
+    animation: pulseGlowRing 1.6s infinite ease-in-out;
 }

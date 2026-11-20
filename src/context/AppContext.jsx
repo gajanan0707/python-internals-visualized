@@ -2,16 +2,47 @@ import React, { createContext, useContext, useState, useEffect, useRef, useMemo,
 import { MODULES, ALL_LESSONS, TOPIC_GUIDES } from '../data/index.js';
 import { useTheme } from '../hooks/useTheme.js';
 import { useProgress } from '../hooks/useProgress.js';
-import { useAnimationLoop } from '../hooks/useAnimationLoop.js';
 import { useKeyboardShortcuts } from '../hooks/useKeyboardShortcuts.js';
 
 const AppContext = createContext(null);
 
+function parseHash(hash) {
+    if (!hash || hash === '#') return { tab: 'learn', lessonId: null, stepIdx: 0 };
+    const clean = hash.replace(/^#\/?/, '');
+    const parts = clean.split('/');
+
+    // Check for top-level tabs
+    if (['practice', 'lab', 'cheatsheets'].includes(parts[0])) {
+        return { tab: parts[0], lessonId: null, stepIdx: 0 };
+    }
+
+    // Default to 'learn' tab: #/lesson-id/stepNumber
+    let lessonPart = parts[0];
+    let stepPart = parts[1];
+
+    if (parts[0] === 'learn' && parts[1]) {
+        lessonPart = parts[1];
+        stepPart = parts[2];
+    }
+
+    const stepIdx = stepPart ? Math.max(0, parseInt(stepPart, 10) - 1) : 0;
+    return { tab: 'learn', lessonId: lessonPart || null, stepIdx: isNaN(stepIdx) ? 0 : stepIdx };
+}
+
 export function AppProvider({ children }) {
     const { dark, toggleDark } = useTheme();
-    const [activeTab, setActiveTab] = useState('learn');
-    const [lessonId, setLessonId] = useState(ALL_LESSONS[0].id);
-    const [stepIndex, setStepIndex] = useState(0);
+
+    // Initial state from URL Hash
+    const initialRoute = useMemo(() => parseHash(window.location.hash), []);
+
+    const [activeTab, setActiveTab] = useState(initialRoute.tab || 'learn');
+    const [lessonId, setLessonId] = useState(() => {
+        if (initialRoute.lessonId && ALL_LESSONS.some((l) => l.id === initialRoute.lessonId)) {
+            return initialRoute.lessonId;
+        }
+        return ALL_LESSONS[0].id;
+    });
+    const [stepIndex, setStepIndex] = useState(initialRoute.stepIdx || 0);
     const [explainMode, setExplainMode] = useState('simple');
     const [collapsedMods, setCollapsedMods] = useState({});
 
@@ -43,12 +74,12 @@ export function AppProvider({ children }) {
     // Node mappings for active step
     const nodeMap = useMemo(() => {
         const m = {};
-        currentStep.nodes.forEach((n) => { m[n.id] = n; });
+        (currentStep.nodes || []).forEach((n) => { m[n.id] = n; });
         return m;
     }, [currentStep]);
 
     const activeNodeObj = useMemo(
-        () => currentStep.nodes.find((n) => n.id === selectedNodeId) || null,
+        () => (currentStep.nodes || []).find((n) => n.id === selectedNodeId) || null,
         [currentStep, selectedNodeId]
     );
 
@@ -58,8 +89,40 @@ export function AppProvider({ children }) {
         setSelectedNodeId(null);
     }, [currentLesson.id, currentLesson.steps.length, stepIndex, recordStepVisit]);
 
-    // Animation loop on SVG edges
-    useAnimationLoop({ currentStep, paused, speed, replaySeed });
+    // HASH-BASED ROUTING: Sync window.location.hash with active state
+    useEffect(() => {
+        let targetHash = '';
+        if (activeTab === 'learn') {
+            targetHash = `#/${currentLesson.id}/${stepIndex + 1}`;
+        } else {
+            targetHash = `#/${activeTab}`;
+        }
+
+        if (window.location.hash !== targetHash) {
+            window.history.replaceState(null, '', targetHash);
+        }
+    }, [activeTab, currentLesson.id, stepIndex]);
+
+    // HASH-BASED ROUTING: Listen for browser Back/Forward navigation
+    useEffect(() => {
+        const handleHashChange = () => {
+            const parsed = parseHash(window.location.hash);
+            if (parsed.tab !== activeTab) {
+                setActiveTab(parsed.tab);
+            }
+            if (parsed.tab === 'learn' && parsed.lessonId) {
+                const targetLesson = ALL_LESSONS.find((l) => l.id === parsed.lessonId);
+                if (targetLesson) {
+                    setLessonId(targetLesson.id);
+                    const clampedIdx = Math.min(parsed.stepIdx, targetLesson.steps.length - 1);
+                    setStepIndex(clampedIdx);
+                }
+            }
+        };
+
+        window.addEventListener('hashchange', handleHashChange);
+        return () => window.removeEventListener('hashchange', handleHashChange);
+    }, [activeTab]);
 
     // Actions
     const selectLesson = useCallback((id, sIdx = 0) => {
@@ -109,9 +172,9 @@ export function AppProvider({ children }) {
             }
             if (q && TOPIC_GUIDES[l.id] && TOPIC_GUIDES[l.id].definition.toLowerCase().includes(q)) {
                 out.push({
-                    type: 'DEF',
+                    type: 'CONCEPT',
                     title: `${l.title} — Definition`,
-                    sub: TOPIC_GUIDES[l.id].definition.slice(0, 72) + '…',
+                    sub: TOPIC_GUIDES[l.id].definition.slice(0, 80) + '…',
                     lessonId: l.id,
                     stepIdx: 0
                 });
@@ -121,7 +184,9 @@ export function AppProvider({ children }) {
                     if (
                         s.title.toLowerCase().includes(q) ||
                         s.simple.toLowerCase().includes(q) ||
-                        s.deep.toLowerCase().includes(q)
+                        s.deep.toLowerCase().includes(q) ||
+                        (s.badge && s.badge.toLowerCase().includes(q)) ||
+                        (s.code && s.code.toLowerCase().includes(q))
                     ) {
                         out.push({
                             type: 'STEP',
@@ -135,7 +200,7 @@ export function AppProvider({ children }) {
             }
         });
 
-        return out.slice(0, 14);
+        return out.slice(0, 16);
     }, [searchQuery]);
 
     const handleSelectSearchResult = useCallback((hit) => {

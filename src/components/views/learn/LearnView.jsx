@@ -1,8 +1,7 @@
 import React from 'react';
 import Sidebar from '../../layout/Sidebar.jsx';
 import MetricsBar from './MetricsBar.jsx';
-import DiagramCanvas from './DiagramCanvas.jsx';
-import CodeStrip from './CodeStrip.jsx';
+import VisualizerWorkspace from './VisualizerWorkspace.jsx';
 import StepTimeline from './StepTimeline.jsx';
 import ConceptGuide from './ConceptGuide.jsx';
 import StepInspector from './StepInspector.jsx';
@@ -49,7 +48,7 @@ export function LearnView(props) {
                 : 'Course Complete ✓';
 
     return (
-        <main className="flex-1 max-w-[1600px] w-full mx-auto grid grid-cols-1 lg:grid-cols-[270px_1fr_350px] gap-4 p-3 sm:p-4">
+        <main className="layout-3col flex-1 w-full mx-auto grid grid-cols-1 lg:grid-cols-[270px_minmax(0,1fr)_340px] gap-4 p-3 sm:p-4 overflow-x-hidden">
             {/* LEFT SIDEBAR */}
             <Sidebar
                 modules={modules}
@@ -91,22 +90,19 @@ export function LearnView(props) {
                 {/* Live Metrics Bar */}
                 <MetricsBar metrics={currentStep.metrics} />
 
-                {/* Interactive Isometric Diagram Canvas & Code */}
-                <div className="flex flex-col">
-                    <DiagramCanvas
-                        currentStep={currentStep}
-                        nodeMap={nodeMap}
-                        selectedNodeId={selectedNodeId}
-                        setSelectedNodeId={setSelectedNodeId}
-                        activeNodeObj={activeNodeObj}
-                        speed={speed}
-                        setSpeed={setSpeed}
-                        paused={paused}
-                        setPaused={setPaused}
-                        onReplay={onReplay}
-                    />
-                    <CodeStrip code={currentStep.code} />
-                </div>
+                {/* Unified Interactive Visualizer Workspace (Programiz + Designed to Scale) */}
+                <VisualizerWorkspace
+                    currentStep={currentStep}
+                    nodeMap={nodeMap}
+                    selectedNodeId={selectedNodeId}
+                    setSelectedNodeId={setSelectedNodeId}
+                    activeNodeObj={activeNodeObj}
+                    speed={speed}
+                    setSpeed={setSpeed}
+                    paused={paused}
+                    setPaused={setPaused}
+                    onReplay={onReplay}
+                />
 
                 {/* Bottom Step Timeline */}
                 <StepTimeline
