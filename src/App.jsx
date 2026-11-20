@@ -1,10 +1,12 @@
 import React from 'react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
+import { Analytics } from '@vercel/analytics/react';
 import { AppProvider } from './context/AppContext.jsx';
 import Header from './components/layout/Header.jsx';
 import ViewRouter from './components/layout/ViewRouter.jsx';
 import SearchModal from './components/common/SearchModal.jsx';
 import MobileDrawer from './components/layout/MobileDrawer.jsx';
+
 
 export default function App() {
     return (
@@ -15,6 +17,7 @@ export default function App() {
                 <SearchModal />
                 <MobileDrawer />
                 <SpeedInsights />
+                <Analytics />
             </div>
         </AppProvider>
     );
