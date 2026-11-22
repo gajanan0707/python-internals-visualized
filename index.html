@@ -2,59 +2,60 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    <!-- Primary SEO Metadata -->
-    <title>Python Internals Visualized — Interactive CPython Guide &amp; Memory Simulator</title>
-    <meta name="title" content="Python Internals Visualized — Interactive CPython Guide &amp; Memory Simulator" />
-    <meta name="description"
-        content="Master Python &amp; CPython 3.12 internals with interactive animated diagrams, memory heap simulations, bytecode execution, GIL &amp; asyncio visualizers, and Big-O cheatsheets." />
-    <meta name="keywords"
-        content="Python internals, CPython 3.12, Python memory management, Python GIL explained, PyObject internals, Python garbage collection, asyncio event loop, bytecode dis, interactive Python tutorial, Python Big-O complexity" />
-    <meta name="author" content="Gajanan Patil" />
-    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-    <link rel="canonical" href="https://python-internals-visualized.vercel.app/" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Favicon & PWA Icons -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" href="/favicon.svg" />
-    <link rel="manifest" href="/site.webmanifest" />
-    <meta name="theme-color" content="#18181B" />
-    <meta name="color-scheme" content="light dark" />
+  <!-- Primary SEO Metadata -->
+  <meta name="google-site-verification" content="2o_ihu3I_OUGE3D6O6b0R3JZWT2DIAdr_T01j5aDSGI" />
+  <title>Python Internals Visualized — Interactive CPython Guide &amp; Memory Simulator</title>
+  <meta name="title" content="Python Internals Visualized — Interactive CPython Guide &amp; Memory Simulator" />
+  <meta name="description"
+    content="Master Python &amp; CPython 3.12 internals with interactive animated diagrams, memory heap simulations, bytecode execution, GIL &amp; asyncio visualizers, and Big-O cheatsheets." />
+  <meta name="keywords"
+    content="Python internals, CPython 3.12, Python memory management, Python GIL explained, PyObject internals, Python garbage collection, asyncio event loop, bytecode dis, interactive Python tutorial, Python Big-O complexity" />
+  <meta name="author" content="Gajanan Patil" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <link rel="canonical" href="https://python-internals-visualized.vercel.app/" />
 
-    <!-- Open Graph / Facebook / LinkedIn -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://python-internals-visualized.vercel.app/" />
-    <meta property="og:site_name" content="Python Internals Visualized" />
-    <meta property="og:title" content="Python Internals Visualized — Interactive CPython Guide &amp; Memory Simulator" />
-    <meta property="og:description"
-        content="Explore CPython bytecode, heap memory, PyObjects, garbage collection, closures, the GIL, asyncio, and Big-O with real-time interactive diagrams and practice labs." />
-    <meta property="og:image" content="https://python-internals-visualized.vercel.app/og-image.svg" />
-    <meta property="og:image:type" content="image/svg+xml" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Python Internals Visualized Preview" />
+  <!-- Favicon & PWA Icons -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="apple-touch-icon" href="/favicon.svg" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#18181B" />
+  <meta name="color-scheme" content="light dark" />
 
-    <!-- Twitter / X Cards -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@Gajanan48373486" />
-    <meta name="twitter:creator" content="@Gajanan48373486" />
-    <meta name="twitter:title" content="Python Internals Visualized — Interactive CPython Guide &amp; Memory Simulator" />
-    <meta name="twitter:description"
-        content="Master Python internals visually: CPython bytecode, PyObjects, garbage collection, closures, GIL, asyncio, and Big-O with interactive diagrams." />
-    <meta name="twitter:image" content="https://python-internals-visualized.vercel.app/og-image.svg" />
+  <!-- Open Graph / Facebook / LinkedIn -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://python-internals-visualized.vercel.app/" />
+  <meta property="og:site_name" content="Python Internals Visualized" />
+  <meta property="og:title" content="Python Internals Visualized — Interactive CPython Guide &amp; Memory Simulator" />
+  <meta property="og:description"
+    content="Explore CPython bytecode, heap memory, PyObjects, garbage collection, closures, the GIL, asyncio, and Big-O with real-time interactive diagrams and practice labs." />
+  <meta property="og:image" content="https://python-internals-visualized.vercel.app/og-image.svg" />
+  <meta property="og:image:type" content="image/svg+xml" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Python Internals Visualized Preview" />
 
-    <!-- Preconnect Fonts & Tailwind CDN -->
-    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
-        rel="stylesheet" />
+  <!-- Twitter / X Cards -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@Gajanan48373486" />
+  <meta name="twitter:creator" content="@Gajanan48373486" />
+  <meta name="twitter:title" content="Python Internals Visualized — Interactive CPython Guide &amp; Memory Simulator" />
+  <meta name="twitter:description"
+    content="Master Python internals visually: CPython bytecode, PyObjects, garbage collection, closures, GIL, asyncio, and Big-O with interactive diagrams." />
+  <meta name="twitter:image" content="https://python-internals-visualized.vercel.app/og-image.svg" />
 
-    <!-- Structured Data (JSON-LD) for Google Rich Snippets & AI Engines (GEO / AEO) -->
-    <script type="application/ld+json">
+  <!-- Preconnect Fonts & Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+
+  <!-- Structured Data (JSON-LD) for Google Rich Snippets & AI Engines (GEO / AEO) -->
+  <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@graph": [
@@ -152,29 +153,38 @@
 </head>
 
 <body>
-    <!-- Semantic Noscript Fallback for Search Bots & AI Crawlers (GEO / LLM indexing) -->
-    <noscript>
-        <div style="padding: 24px; font-family: sans-serif; max-width: 800px; margin: auto;">
-            <h1>Python Internals Visualized</h1>
-            <p><strong>Interactive visual guide to Python internals, CPython execution, memory management, the GIL, and asyncio.</strong></p>
-            <p>Designed by <a href="https://x.com/Gajanan48373486">Gajanan Patil (@Gajanan48373486)</a>.</p>
-            <h2>Course Modules</h2>
-            <ul>
-                <li><strong>01. Execution &amp; Memory:</strong> Lexer, AST Parser, Bytecode, PVM Eval loop, PyObjects, References, Generational Garbage Collection.</li>
-                <li><strong>02. Core Data Structures:</strong> Dynamic Lists, Compact Hash Tables, Tuples, Sets, Comprehensions vs Generators.</li>
-                <li><strong>03. Functions &amp; Scope:</strong> Call Stack Frames, LEGB Scopes, Closures, Decorators, *args and **kwargs.</li>
-                <li><strong>04. Object-Oriented Python:</strong> Instance __dict__, C3 MRO Linearization, super(), Dunder protocols, Descriptors.</li>
-                <li><strong>05. Iteration &amp; Laziness:</strong> Iterators, yield generator states, Context Managers (with).</li>
-                <li><strong>06. Concurrency &amp; Async:</strong> Global Interpreter Lock (GIL), Threading vs Multiprocessing, asyncio Event Loop.</li>
-                <li><strong>07. Typing &amp; Packaging:</strong> Type Hints, sys.path resolution, Virtual Environments.</li>
-                <li><strong>08. Performance &amp; Internals:</strong> __slots__ memory optimization, lru_cache memoization, cProfile.</li>
-            </ul>
-            <p>Please enable JavaScript in your browser to interact with the animated diagrams, practice lab, and heap simulator.</p>
-        </div>
-    </noscript>
+  <!-- Semantic Noscript Fallback for Search Bots & AI Crawlers (GEO / LLM indexing) -->
+  <noscript>
+    <div style="padding: 24px; font-family: sans-serif; max-width: 800px; margin: auto;">
+      <h1>Python Internals Visualized</h1>
+      <p><strong>Interactive visual guide to Python internals, CPython execution, memory management, the GIL, and
+          asyncio.</strong></p>
+      <p>Designed by <a href="https://x.com/Gajanan48373486">Gajanan Patil (@Gajanan48373486)</a>.</p>
+      <h2>Course Modules</h2>
+      <ul>
+        <li><strong>01. Execution &amp; Memory:</strong> Lexer, AST Parser, Bytecode, PVM Eval loop, PyObjects,
+          References, Generational Garbage Collection.</li>
+        <li><strong>02. Core Data Structures:</strong> Dynamic Lists, Compact Hash Tables, Tuples, Sets, Comprehensions
+          vs Generators.</li>
+        <li><strong>03. Functions &amp; Scope:</strong> Call Stack Frames, LEGB Scopes, Closures, Decorators, *args and
+          **kwargs.</li>
+        <li><strong>04. Object-Oriented Python:</strong> Instance __dict__, C3 MRO Linearization, super(), Dunder
+          protocols, Descriptors.</li>
+        <li><strong>05. Iteration &amp; Laziness:</strong> Iterators, yield generator states, Context Managers (with).
+        </li>
+        <li><strong>06. Concurrency &amp; Async:</strong> Global Interpreter Lock (GIL), Threading vs Multiprocessing,
+          asyncio Event Loop.</li>
+        <li><strong>07. Typing &amp; Packaging:</strong> Type Hints, sys.path resolution, Virtual Environments.</li>
+        <li><strong>08. Performance &amp; Internals:</strong> __slots__ memory optimization, lru_cache memoization,
+          cProfile.</li>
+      </ul>
+      <p>Please enable JavaScript in your browser to interact with the animated diagrams, practice lab, and heap
+        simulator.</p>
+    </div>
+  </noscript>
 
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
 </body>
 
 </html>
